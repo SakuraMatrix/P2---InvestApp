@@ -3,6 +3,8 @@ package com.github.InvestApp.AccountService.domain;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
+import javax.annotation.Nonnull;
+
 @Table("accounts")
 public class Account {
   @PrimaryKey private Integer id;
@@ -55,5 +57,18 @@ public class Account {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
+  }
+
+  public Account(Integer id, String firstName, String lastName, double funds, double credit) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.funds = funds;
+    this.credit = credit;
+  }
+
+  @Nonnull
+  public static Account from(Account a) {
+    return new Account(a.id, a.firstName, a.lastName, a.funds, a.credit);
   }
 }
