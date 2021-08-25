@@ -27,6 +27,10 @@ public class CassandraConfig extends AbstractReactiveCassandraConfiguration {
     return keyspace;
   }
 
+  public String[] getEntityBasePackage() {
+    return new String[] {"com.github.InvestApp.AccountService.domain"};
+  }
+
   @Override
   protected String getContactPoints() {
     return contactPoint;
