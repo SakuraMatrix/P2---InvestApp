@@ -3,7 +3,7 @@ An application comprised of microservices for performing a variety of financial 
 
 ## Authors
 - Paul Marquis
-- 
+- Andrew Gregersen
 
 ## Use Cases- User should be able to: 
 - Monitor stocks and investments 
