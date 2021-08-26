@@ -1,10 +1,17 @@
 package com.github.InvestApp.AnalysisService.domain; 
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.cql.Ordering;
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
+
+
 @Table("stocks")
 public class Stocks { 
-    @PrimaryKey private int account_id; 
-    @PrimaryKey private String symbol;  
+     
+    @PrimaryKeyColumn(name = "account_id", ordinal = 1, type = PrimaryKeyType.CLUSTERED, ordering = Ordering.DESCENDING)
+    private int account_id;
+    @PrimaryKeyColumn(name = "symbol", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
+    private String symbol;
     private String name; 
     private int owned;
     private double price;   
