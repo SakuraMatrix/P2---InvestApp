@@ -101,7 +101,7 @@ public class AccountController {
    * @param id: The Id of the Account to be tombstoned
    * @return A Void Mono
    */
-  @DeleteMapping("{account_id}")
+  @DeleteMapping("/accounts/delete/{account_id}")
   public Mono<Void> delete(@PathVariable Integer id) {
     log.info("Deleting an Account");
     return service.delete(id);
