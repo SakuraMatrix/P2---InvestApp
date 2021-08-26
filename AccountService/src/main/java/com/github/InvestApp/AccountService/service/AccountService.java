@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.concurrent.atomic.AtomicReference;
-
 @Service
 public class AccountService {
 
@@ -34,14 +32,10 @@ public class AccountService {
   }
 
   public Mono<Account> updateFunds(Integer id, double funds) {
-    AtomicReference<Account> account = null;
-    Mono<Account> oldAccount = get(id);
-    oldAccount.subscribe(
-        it -> {
-          assert false;
-          account.set(Account.from(it));
-        });
-    assert false;
-    return repo.save(account.get());
+    return repo.updateFunds(id, funds);
+  }
+
+  public Mono<Account> updateCredit(Integer id, double credit) {
+    return repo.updateCredit(id, credit);
   }
 }
