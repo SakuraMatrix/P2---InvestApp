@@ -1,3 +1,5 @@
 .idea
 /out
-.gitignore
+AccountService.iml
+HELP.md
+AccountService/target

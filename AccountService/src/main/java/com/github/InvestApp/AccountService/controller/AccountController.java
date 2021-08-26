@@ -11,7 +11,8 @@ import reactor.core.publisher.Mono;
 @RestController
 public class AccountController {
 
-  private static Logger log = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("controller");
+  private static final Logger log =
+      (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("controller");
 
   private final AccountService service;
 
@@ -63,6 +64,21 @@ public class AccountController {
       @PathVariable("account_id") Integer id, @RequestBody double funds) {
     log.info("Updating Funds in an Account");
     return service.updateFunds(id, funds);
+  }
+
+  /**
+   * A REST endpoint (PUT) to update the Credit available for a given account to a new value. @
+   *
+   * @author Andrew Gregersen
+   * @param id: The Id of the account to update
+   * @param credit: The new value of available Credit
+   * @return A Mono representing the updated Account
+   */
+  @PutMapping("/credit/{account_id}")
+  public Mono<Account> updateCredit(
+      @PathVariable("account_id") Integer id, @RequestBody double credit) {
+    log.info("Updating Funds in an Account");
+    return service.updateFunds(id, credit);
   }
 
   /**

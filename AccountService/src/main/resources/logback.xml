@@ -1,6 +1,6 @@
 <configuration debug="true">
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <File>YOUR FILE NAME GOES HERE.log</File>
+        <File>/log/events.log.log</File>
         <encoder>
             <Pattern>%d %p %t %c - %m%n</Pattern>
         </encoder>
