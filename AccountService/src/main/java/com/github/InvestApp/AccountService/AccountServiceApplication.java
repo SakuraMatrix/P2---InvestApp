@@ -14,12 +14,12 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 import reactor.netty.http.server.HttpServer;
 
 @SpringBootApplication
-@PropertySource("file:application.properties")
+@PropertySource("classpath:application.properties")
 public class AccountServiceApplication {
 
-  @Autowired AccountController controller;
+  private @Autowired AccountController controller;
 
-  @Value("server.port")
+  @Value("${server.port}")
   private String port;
 
   public static void main(String[] args) {

@@ -13,13 +13,13 @@ import java.util.List;
 
 @EnableReactiveCassandraRepositories
 @Configuration
-@PropertySource("file:application.properties")
+@PropertySource("classpath:application.properties")
 public class CassandraConfig extends AbstractReactiveCassandraConfiguration {
 
-  @Value("cassandra.contactpoint")
+  @Value("${cassandra.contactpoint}")
   private String contactPoint;
 
-  @Value("cassandra.keyspace")
+  @Value("${cassandra.keyspace}")
   private String keyspace;
 
   @Override
