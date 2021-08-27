@@ -3,8 +3,7 @@ Feature: Updating certain columns in an Account
   Background:
     * url baseUrl
     * def creditUpdate = '/credit/'
-    * def fundsUpdate = '/funds/
-    * def accountSetup = call read('classpath:create.feature')
+    * def fundsUpdate = '/funds/'
 
   Scenario: Updates the credit in a specific account
     Given path creditUpdate + '3'

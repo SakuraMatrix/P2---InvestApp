@@ -2,7 +2,7 @@ Feature: Create many Accounts...
 
   Background:
     * url baseUrl
-    * def accountBase = '/accounts'
+    * def accountBase = ''
 
 
   Scenario: Create an Account with all fields
@@ -19,7 +19,7 @@ Feature: Create many Accounts...
     And header Accept = 'application/json'
     When method post
     Then status 200
-    And match response == {id: 2, firstName: 'John', lastName: 'Doe', credit: 9542.00}
+    And match response == {id: 2, firstName: 'John', lastName: 'Doe', funds: 0.0, credit: 9542.00}
 
   Scenario: Create an Account with out any credit...
     Given path accountBase
@@ -27,6 +27,6 @@ Feature: Create many Accounts...
     And header Accept = 'application/json'
     When method post
     Then status 200
-    And match response == {id: 3, firstName: 'Joe', lastName: 'Shmoe', funds: 50987.51}
+    And match response == {id: 3, firstName: 'Joe', lastName: 'Shmoe', funds: 50987.51, credit:0.0}
 
 
