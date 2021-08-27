@@ -8,10 +8,31 @@ import javax.annotation.Nonnull;
 @Table("accounts")
 public class Account {
   @PrimaryKey private Integer id;
-  private String firstName;
-  private String lastName;
+  private String first_name;
+  private String last_name;
   private double funds;
   private double credit;
+
+  @Nonnull
+  public static Account from(Account a) {
+    return new Account(a.id, a.first_name, a.last_name, a.funds, a.credit);
+  }
+
+  public Account() {}
+
+  public Account(Integer id, String first_name, String last_name) {
+    this.id = id;
+    this.first_name = first_name;
+    this.last_name = last_name;
+  }
+
+  public Account(Integer id, String first_name, String last_name, double funds, double credit) {
+    this.id = id;
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.funds = funds;
+    this.credit = credit;
+  }
 
   public Integer getId() {
     return id;
@@ -22,19 +43,19 @@ public class Account {
   }
 
   public String getFirstName() {
-    return firstName;
+    return first_name;
   }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
+  public void setFirstName(String first_name) {
+    this.first_name = first_name;
   }
 
   public String getLastName() {
-    return lastName;
+    return last_name;
   }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
+  public void setLastName(String last_name) {
+    this.last_name = last_name;
   }
 
   public double getFunds() {
@@ -51,24 +72,5 @@ public class Account {
 
   public void setFunds(double funds) {
     this.funds = funds;
-  }
-
-  public Account(Integer id, String firstName, String lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-
-  public Account(Integer id, String firstName, String lastName, double funds, double credit) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.funds = funds;
-    this.credit = credit;
-  }
-
-  @Nonnull
-  public static Account from(Account a) {
-    return new Account(a.id, a.firstName, a.lastName, a.funds, a.credit);
   }
 }

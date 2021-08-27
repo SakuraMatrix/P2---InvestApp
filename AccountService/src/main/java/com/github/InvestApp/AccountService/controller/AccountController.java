@@ -40,6 +40,30 @@ public class AccountController {
   }
 
   /**
+   * A REST endpoint (GET) to retrieve all individual Funds in the Cassandra Database
+   *
+   * @author Andrew Gregersen
+   * @return A Flux of all Funds in the Database
+   */
+  @GetMapping("/funds")
+  public Flux<Double> getAllFunds() {
+    log.info("Retrieving all Funds");
+    return service.getAllFunds();
+  }
+
+  /**
+   * A REST endpoint (GET) to retrieve all individual credit amounts in the Cassandra Database
+   *
+   * @author Andrew Gregersen
+   * @return A Flux of all credit amounts in the Database
+   */
+  @GetMapping("/credit")
+  public Flux<Double> getAllCredit() {
+    log.info("Retrieving all Funds");
+    return service.getAllCredit();
+  }
+
+  /**
    * A REST endpoint (GET) to retrieve a single account from the Cassandra Database.
    *
    * @param id: The requested account identification number
@@ -52,6 +76,32 @@ public class AccountController {
   }
 
   /**
+   * A REST endpoint (GET) to retrieve the amount of funds a single account has
+   *
+   * @author Andrew Gregersen
+   * @param id: The account to get the funds of
+   * @return A Mono containing the amount of available funds
+   */
+  @GetMapping("/funds/{account_id}")
+  public Mono<Double> getFunds(@PathVariable("account_id") Integer id) {
+    log.info("Retrieving available funds for Account number: " + id);
+    return service.getFunds(id);
+  }
+
+  /**
+   * A REST endpoint (GET) to retrieve the amount of credit a single account has
+   *
+   * @author Andrew Gregersen
+   * @param id: The account to get the credit of
+   * @return A Mono containing the amount of available credit
+   */
+  @GetMapping("/credit/{account_id}")
+  public Mono<Double> getCredit(@PathVariable("account_id") Integer id) {
+    log.info("Retrieving available credit for Account number: " + id);
+    return service.getCredit(id);
+  }
+
+  /**
    * A REST endpoint (PUT) to update the funds available for a given account to a new value. @
    *
    * @author Andrew Gregersen
@@ -61,7 +111,7 @@ public class AccountController {
    */
   @PutMapping("/funds/{account_id}")
   public Mono<Account> updateFunds(
-      @PathVariable("account_id") Integer id, @RequestBody double funds) {
+      @PathVariable("account_id") Integer id, @RequestBody Double funds) {
     log.info("Updating Funds in an Account");
     return service.updateFunds(id, funds);
   }
@@ -76,7 +126,7 @@ public class AccountController {
    */
   @PutMapping("/credit/{account_id}")
   public Mono<Account> updateCredit(
-      @PathVariable("account_id") Integer id, @RequestBody double credit) {
+      @PathVariable("account_id") Integer id, @RequestBody Double credit) {
     log.info("Updating Funds in an Account");
     return service.updateFunds(id, credit);
   }
