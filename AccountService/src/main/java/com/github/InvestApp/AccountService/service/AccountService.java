@@ -23,6 +23,22 @@ public class AccountService {
     return repo.findById(id);
   }
 
+  public Mono<Double> getCredit(Integer id) {
+    return repo.getCredit(id);
+  }
+
+  public Mono<Double> getFunds(Integer id) {
+    return repo.getFunds(id);
+  }
+
+  public Flux<Double> getAllFunds() {
+    return repo.getAllFunds();
+  }
+
+  public Flux<Double> getAllCredit() {
+    return repo.getAllCredit();
+  }
+
   public Mono<Account> create(Account account) {
     return repo.save(account);
   }

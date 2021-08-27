@@ -57,6 +57,11 @@
             <artifactId>java-driver-core</artifactId>
             <version>4.13.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tinkerpop</groupId>
+            <artifactId>gremlin-core</artifactId>
+            <version>3.5.1</version>
+        </dependency>
     </dependencies>
 
     <build>
