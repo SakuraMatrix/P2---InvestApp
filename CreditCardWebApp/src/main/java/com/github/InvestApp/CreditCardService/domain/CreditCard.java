@@ -1,6 +1,7 @@
 package com.github.InvestApp.CreditCardService.domain;
 
 import lombok.Data;
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
@@ -13,13 +14,20 @@ import javax.annotation.Nonnull;
 @Table("creditcards")
 public class CreditCard {
     @PrimaryKeyColumn(name = "account_id", ordinal = 1, type = PrimaryKeyType.PARTITIONED, ordering = Ordering.DESCENDING)
+    @JsonProperty("account_id")
     private int account_id;
     @PrimaryKeyColumn(name = "card_num", ordinal = 0, type = PrimaryKeyType.CLUSTERED)
+    @JsonProperty("card_num")
     private String card_num;
+    @JsonProperty("first_name")
     private String first_name;
+    @JsonProperty("last_name")
     private String last_name;
+    @JsonProperty("type")
     private String type;
+    @JsonProperty("ccv")
     private String ccv;
+    @JsonProperty("exp_date")
     private String exp_date;
 
 
