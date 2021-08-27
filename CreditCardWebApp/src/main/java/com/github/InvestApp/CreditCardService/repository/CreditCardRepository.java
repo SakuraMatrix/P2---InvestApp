@@ -14,6 +14,10 @@ public interface CreditCardRepository extends ReactiveCassandraRepository<Credit
     @Query("SELECT * FROM investapp.creditcards WHERE account_id = ?0")
     Mono<CreditCard> findById(Integer id);
 
+    @Nonnull
+    @Query("DELETE FROM investapp.creditcards WHERE account_id = ?0")
+    Mono<Void> deleteById(Integer id);
+
 
 
 }
