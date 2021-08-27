@@ -111,9 +111,9 @@ public class AccountController {
    */
   @PutMapping("/funds/{account_id}")
   public Mono<Account> updateFunds(
-      @PathVariable("account_id") Integer id, @RequestBody Double funds) {
+      @PathVariable("account_id") Integer id, @RequestBody String funds) {
     log.info("Updating Funds in an Account");
-    return service.updateFunds(id, funds);
+    return service.updateFunds(id, Double.parseDouble(funds));
   }
 
   /**
@@ -126,9 +126,9 @@ public class AccountController {
    */
   @PutMapping("/credit/{account_id}")
   public Mono<Account> updateCredit(
-      @PathVariable("account_id") Integer id, @RequestBody Double credit) {
+      @PathVariable("account_id") Integer id, @RequestBody String credit) {
     log.info("Updating Funds in an Account");
-    return service.updateFunds(id, credit);
+    return service.updateFunds(id, Double.parseDouble(credit));
   }
 
   /**
@@ -152,8 +152,8 @@ public class AccountController {
    * @return A Void Mono
    */
   @DeleteMapping("/accounts/delete/{account_id}")
-  public Mono<Void> delete(@PathVariable Integer id) {
+  public Mono<Void> delete(@PathVariable("account_id") String id) {
     log.info("Deleting an Account");
-    return service.delete(id);
+    return service.delete(Integer.parseInt(id));
   }
 }
