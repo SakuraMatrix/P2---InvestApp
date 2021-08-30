@@ -15,6 +15,10 @@ public class AnalysisService {
     this.repo = repo;
   }
 
+  public Flux<Stocks> getAll() {
+    return repo.findAll();
+  }
+  
 
   public Flux<Stocks> get(int id) {
     return repo.get(id);

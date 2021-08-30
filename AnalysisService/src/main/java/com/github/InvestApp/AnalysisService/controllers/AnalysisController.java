@@ -25,11 +25,11 @@ public class AnalysisController {
   }
 
 
-  // @GetMapping("/stocks")
-  // public Flux<Stocks> getAll() {
-  //   log.info("Showing all stocks");
-  //   return service.getAll();
-  // } 
+   @GetMapping("/stocks")
+   public Flux<Stocks> getAll() {
+     log.info("Showing all stocks");
+    return service.getAll();
+   } 
 
   @GetMapping("/stocks/{account_id}")
   public Flux<Stocks> get(@PathVariable("account_id") int id) {

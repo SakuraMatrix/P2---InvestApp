@@ -1,16 +1,15 @@
 package com.github.InvestApp.AnalysisService.domain; 
-import org.springframework.data.cassandra.core.cql.Ordering;
-import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 
 @Table("stocks")
 public class Stocks { 
-     
-    @PrimaryKeyColumn(name = "account_id", ordinal = 1, type = PrimaryKeyType.CLUSTERED, ordering = Ordering.DESCENDING)
+    @Id
+    @PrimaryKey 
+    private int id;
     private int account_id;
-    @PrimaryKeyColumn(name = "symbol", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
     private String symbol;
     private String name; 
     private int owned;
@@ -43,10 +42,11 @@ public class Stocks {
         this.symbol = symbolInput.toUpperCase(); 
     }   
 
-    public Stocks(int account_id, String symbol, String name, int owned, double price, double changesPercentage, double change, 
+    public Stocks(int id, int account_id, String symbol, String name, int owned, double price, double changesPercentage, double change, 
     double dayLow, double dayHigh, double yearHigh, double yearLow, double marketCap, double priceAvg50, 
     double priceAvg200, double volume, double avgVolume, String exchange, double open, double previousClose, 
     double eps, double pe, String earningsAnnouncement, double sharesOutstanding, double timestamp){  
+        this.id =  id;
         this.account_id = account_id;
         this.symbol = symbol; 
         this.name = name;  
@@ -74,7 +74,15 @@ public class Stocks {
     }
     public Stocks getStock(){ 
         return this;
+    } 
+
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }  
 
     public int getAccount_Id() {
         return account_id;

@@ -1,4 +1,6 @@
 package com.github.InvestApp.AnalysisService.repository; 
+import java.util.List;
+
 import com.github.InvestApp.AnalysisService.domain.Stocks;
 
 import org.springframework.data.cassandra.repository.Query;
@@ -16,11 +18,12 @@ public interface AnalysisRepository extends ReactiveCassandraRepository<Stocks, 
   // }
   
   
-  default Flux<Stocks> get(int id) {
-    return Flux.from(this.findById(id));
-  }
+  // default Flux<Stocks> get(int id) {
+  //   return Flux.from(this.findById(id));
+  // }
   
-
+  @Query("SELECT * FROM investapp.stocks WHERE account_id = ?0 ALLOW FILTERING")
+  Flux<Stocks> get(Integer account_id);
   
   
   
