@@ -10,11 +10,9 @@ Feature: Updating certain columns in an Account
     And request '5000.00'
     When method PUT
     Then status 200
-    And match response == {id: 3, firstName: 'Joe', lastName: 'Shmoe', funds: 50987.51, credit: 5000.0}
 
-  Scenario:Same as above
+  Scenario:Same as above but for funds
     Given path fundsUpdate + '2'
     And request '54321.00'
     When method PUT
     Then status 200
-    And match response == {id: 2, firstName: 'John', lastName: 'Doe', funds: 54321.00, credit: 9542.00}
