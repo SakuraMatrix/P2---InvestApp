@@ -30,6 +30,9 @@ CREATE TABLE IF NOT EXISTS investapp.stocks (
 );
 
 
+INSERT INTO investapp.stocks
+(account_id, owned, symbol, name, price, changes_percentage, change, day_low, day_high, year_high, year_low, market_cap, price_avg50, price_avg200, volume, avg_volume, exchange, open, previousClose, eps, pe, earnings_announcement, shares_outstanding, timestamp)
+VALUES (1, 1, 'MSFT', 'Microsoft', 250, 20, 5, 245, 255, 265, 243, 1000, 260, 269, 20000, 2000, 'NASDAQ', 250, 249.5, 1000, 25, 'January 6, 2022', 4000, 12);
 
 -- Create Accounts Table
 CREATE TABLE IF NOT EXISTS

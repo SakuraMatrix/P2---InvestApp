@@ -72,13 +72,15 @@ public class Stocks {
         this.sharesOutstanding = sharesOutstanding; 
         this.timestamp = timestamp;
     }
-
+    public Stocks getStock(){ 
+        return this;
+    }
 
     public int getAccount_Id() {
         return account_id;
     }
 
-    public void setAccountId(int account_id) {
+    public void setAccount_Id(int account_id) {
         this.account_id = account_id;
     }  
 
@@ -264,5 +266,7 @@ public class Stocks {
 
     public void setTimestamp(double timestamp) {
         this.timestamp = timestamp;
-    }   
+    }
+
+  
 } 
