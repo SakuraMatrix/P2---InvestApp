@@ -1,4 +1,4 @@
-package com.github.investapp.EurekaDiscoveryService;
+package com.github.InvestApp.EurekaDiscoveryService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
