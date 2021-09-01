@@ -1,4 +1,5 @@
 .idea
+<<<<<<< HEAD
 # Compiled class file
 *.class
 
@@ -19,3 +20,9 @@
 *.zip
 *.tar.gz
 *.rar
+=======
+/out
+AccountService.iml
+HELP.md
+AccountService/target
+>>>>>>> 21873a89d45b383be3cb945b2f69b1ba7903adc1
