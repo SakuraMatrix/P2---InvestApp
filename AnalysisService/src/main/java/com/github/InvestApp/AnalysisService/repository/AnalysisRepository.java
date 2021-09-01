@@ -23,7 +23,10 @@ public interface AnalysisRepository extends ReactiveCassandraRepository<Stocks, 
   // }
   
   @Query("SELECT * FROM investapp.stocks WHERE account_id = ?0 ALLOW FILTERING")
-  Flux<Stocks> get(Integer account_id);
+  Flux<Stocks> get(Integer account_id); 
+
+  @Query("SELECT * FROM investapp.stocks WHERE account_id = ?0 and symbol = ?1 ALLOW FILTERING")
+  Mono<Stocks> getBySymbol(Integer account_id, String symbol);
   
   @Query("INSERT INTO investapp.stocks (id, account_id, owned, symbol, name, price, changesPercentage, change, dayLow," + 
   "dayHigh, yearHigh, yearLow, marketCap, priceAvg50, priceAvg200, volume, avgVolume, " +
@@ -35,6 +38,16 @@ public interface AnalysisRepository extends ReactiveCassandraRepository<Stocks, 
   double priceAvg200, double volume, double avgVolume, String exchange, double open, double previousClose, 
   double eps, double pe, String earningsAnnouncement, double sharesOutstanding, double timestamp);
   
+  @Query("UPDATE investapp.stocks SET account_id = ?0, owned = owned + ?1, symbol = ?2, " +  
+  "name = ?3, price = ?4, changesPercentage = ?5, change = ?6, dayLow = ?7, dayHigh = ?8, yearHigh = ?9, " + 
+  "yearLow = ?10, marketCap = ?11, priceAvg50 = ?12, priceAvg200 = ?13, volume = ?14, avgVolume = ?15, " + 
+  "exchange = ?16, open = ?17, previousClose = ?18, eps = ?19, pe = ?20, earningsAnnouncement = ?21, " +  
+  "sharesOutstanding = ?22, timestamp = ?23" +  
+  "WHERE account_id = ?0;")
+  Mono<Stocks> updateStock(int account_id, int owned, String symbol, String name, double price, double changesPercentage, double change, 
+  double dayLow, double dayHigh, double yearHigh, double yearLow, double marketCap, double priceAvg50, 
+  double priceAvg200, double volume, double avgVolume, String exchange, double open, double previousClose, 
+  double eps, double pe, String earningsAnnouncement, double sharesOutstanding, double timestamp);
   
   
   // default Mono<Stocks> updateFunds(Integer account_id, Double price) {

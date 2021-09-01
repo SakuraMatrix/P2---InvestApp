@@ -34,7 +34,13 @@ public class AnalysisController {
    public Flux<Stocks> getAll() {
      log.info("Showing all stocks");
     return service.getAll();
-   } 
+   }  
+
+  //  @GetMapping("/stocks/update")
+  //  public Flux<Stocks> updateStocks() {
+  //    log.info("Updating all stock values");
+  //   return service.getAll();
+  //  } 
 
   @GetMapping("/stocks/{account_id}")
   public Flux<Stocks> get(@PathVariable("account_id") int id) {
@@ -43,7 +49,7 @@ public class AnalysisController {
   } 
 
   @GetMapping("/stocks/{account_id}/buy/{symbol}/{owned}")
-  public Mono<Stocks> Buy(@PathVariable("account_id") int id, @PathVariable("symbol") String symbol, @PathVariable("owned") int owned) throws JsonMappingException, JsonProcessingException, MalformedURLException, IOException {
+  public Mono<Stocks> buy(@PathVariable("account_id") int id, @PathVariable("symbol") String symbol, @PathVariable("owned") int owned) throws JsonMappingException, JsonProcessingException, MalformedURLException, IOException {
     log.info("Buying new stock and subtracting funds");   
     return service.addStock(id, owned, symbol);
   }
