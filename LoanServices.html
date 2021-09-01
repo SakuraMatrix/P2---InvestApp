@@ -1,0 +1,208 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	body {font-family: Arial;}
+	
+	/* style the header */
+	.header {
+	text-align = center;
+	text-color = green;
+	background-color:#985EF8 ;
+	man-height:50x;
+	border: 1px, solid;
+	text-align:center;
+	}
+	
+	label, input{
+	margin:15px;
+	}
+	
+	form {
+		border: 1px, solid, grey;
+		text-align:center;
+	}
+	.footer {
+	text-align:left;
+	}
+	.formBtn {
+	text-align = center;
+	}
+
+
+	
+	/* Style the tab */
+	.tab {
+	  overflow: hidden;
+	  border: 1px solid #ccc;
+	  background-color: #f1f1f1;
+	}
+
+	/* Style the buttons inside the tab */
+	.tab button {
+	  background-color: inherit;
+	  float: left;
+	  border: none;
+	  outline: none;
+	  cursor: pointer;
+	  padding: 14px 16px;
+	  transition: 0.3s;
+	  font-size: 17px;
+	}
+
+	/* Change background color of buttons on hover */
+	.tab button:hover {
+	  background-color: #ddd;
+	}
+
+	/* Create an active/current tablink class */
+	.tab button.active {
+	  background-color: #abc;
+	}
+
+	/* Style the tab content */
+	.tabcontent {
+	  display: none;
+	  padding: 6px 12px;
+	  border: 1px solid #ccc;
+	  border-top: none;
+	  min-width: 600px;
+	}
+	
+	/* Display for the return data */
+	.returndata {
+	min-width:85%;
+	min-height:50px;
+	border: 1px solid grey;
+	background: #D1ECEF;
+	text-align:left;
+	}
+</style>
+</head>
+<body>
+<div id="header" class="header">
+<h1>     Invest App    </h1>
+<h3> <i>Loan Services</i>  </h3>
+</div>
+
+<div class="tab">
+	<button class="tablinks active" onclick="loanServices(event, 'Apply')">Loan Application</button>
+	<button class="tablinks" onclick="loanServices(event, 'View')">View Activity</button>
+	<button class="tablinks" onclick="loanServices(event, 'Review')">Review Applications</button>
+ </div>
+ 
+ 
+ 
+	<div id="Apply" class="tabcontent" style="display: block;">
+		<form method="post" action="loans/new">
+			<div class="container">
+				<h1>Loan Application</h1>
+				<p>Complete all the field in the Application Form</p>
+				<br>
+
+				<label for="user_name"><b>User Name</b></label>
+				<input type="text" placeholder="User Name" name="user_name" id="user_name" required="">
+				<br>
+				
+				<label for="loan_amount"><b> Requested Amount: $ </b></label>
+				<input type="int" placeholder="10,000" name="loan_amount" id="loan_amount" required="">
+				<br><br>
+				
+				<label for="purpose"><b> Loan-purpose </b></label>
+					<select name="purpose" id="loan_purpose">
+					  <option value="investment">Investment</option>
+					  <option value="personal">Personal Loan</option>
+					  <option value="home Equity">Home Equity</option>
+					  <option value="auto">Auto loan</option>
+					</select>
+				<br><br>
+				
+				<label for="gross_earnings"><b>Annual Gross Earnings: $ </b></label>
+				<input type="int" placeholder="35,000" name="gross_earnings" id="gross_earnings" required="">
+				<br><br>
+				
+				<label for="total_expenses"><b>Total Monthly Expenses: $ </b></label>
+				<input type="int" placeholder="3,000" name="total_expenses" id="total_expenses" required="">
+				<br><br>
+				
+				<label for="Loan_term"> <b>Loan Term in Months </b></label>
+				<input type="int" placeholder="24" name="loan_term" id="loan_term" required="">
+				<br><br>
+				
+				
+				<p>Click the Submit button complete your Application .</p>
+				<input type="submit" class="registerbtn" value="Submit Application">
+			</div>
+			<br>
+			<br>
+			<div> <a href="loans/"user_name"> View my Applications </a></div>
+
+
+		</form>
+	</div>
+ 
+ 
+	<div id="View" class="tabcontent" style="display: none;"> 
+		<form method="post" action="trx/new">
+			<div class="container" border="2px," black="">
+				<h2> View My Applications </h2>
+
+				<label for="user_name"><b>User Name</b></label>
+				<input type="text" placeholder="User Name" name="user_name" id="user_name" required=""/>
+				<br>
+				<p>Click the Submit button to Continue!.</p>
+				<input type="submit" value="View my Applications">
+				<br><br>
+				<div class="returndata"> 
+			
+				</div>
+			
+			</div>
+			
+		</form>
+	</div>
+
+		
+
+	<div id="Review" class="tabcontent" style="display: none;">
+	<h2> Activity Details </h2>
+		<form method="post" action="loan/">
+			<div class="container" border="2px," black="">
+				<h2> Review Applications </h2>
+				<label for="foption"><b>Filter By</b></label>
+					<select name="filter" id="filter"  required="">
+					  <option value="account_id">Investment</option>
+					  <option value="status">Application Status</option>
+					  <option value="approved">Approval Status</option>
+					  <option value="purpose">Loan Type</option>
+					</select>
+				
+				<input type="select" placeholder="filter" name="filter" id="filter" required=""/>
+				<br><br>
+				<input type="submit" value="continue">
+				<div class="returndata"> 
+				
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+
+<script>
+	function loanServices(evt, Request) {
+	  var i, tabcontent, tablinks;
+	  tabcontent = document.getElementsByClassName("tabcontent");
+	  for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	  }
+	  tablinks = document.getElementsByClassName("tablinks");
+	  for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	  }
+	  document.getElementById(Request).style.display = "block";
+	  evt.currentTarget.className += " active";
+	}
+</script>
+
+</i></i></body></html>
