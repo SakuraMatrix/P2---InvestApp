@@ -44,7 +44,7 @@ public class AnalysisController {
 
   @GetMapping("/stocks/{account_id}/buy/{symbol}/{owned}")
   public Mono<Stocks> Buy(@PathVariable("account_id") int id, @PathVariable("symbol") String symbol, @PathVariable("owned") int owned) throws JsonMappingException, JsonProcessingException, MalformedURLException, IOException {
-    log.info("Buying new stock and subtracting funds");  
+    log.info("Buying new stock and subtracting funds");   
     return service.addStock(id, owned, symbol);
   }
 
