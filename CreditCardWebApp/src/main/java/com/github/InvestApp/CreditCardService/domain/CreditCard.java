@@ -13,7 +13,9 @@ import javax.annotation.Nonnull;
 @Data
 @Table("creditcards")
 public class CreditCard {
-    @PrimaryKeyColumn(name = "account_id", ordinal = 1, type = PrimaryKeyType.PARTITIONED, ordering = Ordering.DESCENDING)
+    @PrimaryKeyColumn(name = "card_id", ordinal = 1, type = PrimaryKeyType.PARTITIONED, ordering = Ordering.DESCENDING)
+    @JsonProperty("card_id")
+    private int card_id;
     @JsonProperty("account_id")
     private int account_id;
     @PrimaryKeyColumn(name = "card_num", ordinal = 0, type = PrimaryKeyType.CLUSTERED)
@@ -31,7 +33,8 @@ public class CreditCard {
     private String exp_date;
 
 
-    public CreditCard(int account_id, String card_num, String first_name, String last_name, String type, String ccv, String exp_date) {
+    public CreditCard(int card_id,int account_id, String card_num, String first_name, String last_name, String type, String ccv, String exp_date) {
+        this.card_id = card_id;
         this.account_id = account_id;
         this.card_num = card_num;
         this.first_name = first_name;
@@ -45,6 +48,13 @@ public class CreditCard {
 
     }
 
+    public int getCard_id() {
+        return card_id;
+    }
+
+    public void setCard_id(int card_id) {
+        this.card_id = card_id;
+    }
 
     public int getAccount_id() {
         return account_id;
@@ -105,7 +115,7 @@ public class CreditCard {
     @Nonnull
     public static CreditCard from(CreditCard cc)
     {
-        return new CreditCard(cc.account_id,cc.card_num,cc.first_name,cc.last_name,
+        return new CreditCard(cc.card_id,cc.account_id,cc.card_num,cc.first_name,cc.last_name,
                 cc.type,cc.ccv,cc.exp_date);
     }
 }

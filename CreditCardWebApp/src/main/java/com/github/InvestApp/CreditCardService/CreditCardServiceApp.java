@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
@@ -18,6 +19,7 @@ import reactor.netty.http.server.HttpServer;
 
 @SpringBootApplication
 @PropertySource("classpath:application.properties")
+@EnableEurekaClient
 public class CreditCardServiceApp {
 
     private @Autowired
@@ -26,19 +28,22 @@ public class CreditCardServiceApp {
     @Value("${server.port}")
     private String port;
 
+
     private static final Logger log = (Logger) LoggerFactory.getLogger("Service App");
+    @Value("${spring.application.name}")
     public static void main(String[] args)
     {
         log.info("Running Spring Application");
-        SpringApplication.run(CreditCardServiceApp.class);
+        SpringApplication.run(CreditCardServiceApp.class, args);
     }
 
 
     @Bean
-    public HttpServer httpServer(ApplicationContext context)
-    {
+    public HttpServer httpServer(ApplicationContext context) {
         HttpHandler handler = WebHttpHandlerBuilder.applicationContext(context).build();
         ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(handler);
         return HttpServer.create().port(Integer.parseInt(port)).handle(adapter);
     }
+
+
 }
