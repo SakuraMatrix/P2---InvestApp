@@ -9,10 +9,10 @@ public class Stocks {
     @Id
     @PrimaryKey 
     private int id;
-    private int account_id;
+    private int account_id; 
+    private int owned;
     private String symbol;
     private String name; 
-    private int owned;
     private double price;   
     private double changesPercentage; 
     private double change; 
@@ -42,39 +42,37 @@ public class Stocks {
         this.symbol = symbolInput.toUpperCase(); 
     }   
 
-    public Stocks(int id, int account_id, String symbol, String name, int owned, double price, double changesPercentage, double change, 
-    double dayLow, double dayHigh, double yearHigh, double yearLow, double marketCap, double priceAvg50, 
-    double priceAvg200, double volume, double avgVolume, String exchange, double open, double previousClose, 
-    double eps, double pe, String earningsAnnouncement, double sharesOutstanding, double timestamp){  
-        this.id =  id;
-        this.account_id = account_id;
-        this.symbol = symbol; 
-        this.name = name;  
-        this.owned = owned;
-        this.price = price; 
-        this.changesPercentage = changesPercentage; 
-        this.change = change; 
-        this.dayLow = dayLow; 
-        this.dayHigh = dayHigh; 
-        this.yearHigh = yearHigh; 
-        this.yearLow = yearLow; 
-        this.marketCap = marketCap; 
-        this.priceAvg50 =  priceAvg50; 
-        this.priceAvg200 = priceAvg200; 
-        this.volume = volume; 
-        this.avgVolume = avgVolume; 
-        this.exchange = exchange; 
-        this.open = open; 
-        this.previousClose = previousClose; 
-        this.eps = eps; 
-        this.pe = pe; 
-        this.earningsAnnouncement = earningsAnnouncement; 
-        this.sharesOutstanding = sharesOutstanding; 
-        this.timestamp = timestamp;
-    }
-    public Stocks getStock(){ 
-        return this;
-    } 
+    // public Stocks(int id, int account_id, String symbol, String name, int owned, double price, double changesPercentage, double change, 
+    // double dayLow, double dayHigh, double yearHigh, double yearLow, double marketCap, double priceAvg50, 
+    // double priceAvg200, double volume, double avgVolume, String exchange, double open, double previousClose, 
+    // double eps, double pe, String earningsAnnouncement, double sharesOutstanding, double timestamp){  
+    //     this.id =  id;
+    //     this.account_id = account_id;
+    //     this.symbol = symbol; 
+    //     this.name = name;  
+    //     this.owned = owned;
+    //     this.price = price; 
+    //     this.changesPercentage = changesPercentage; 
+    //     this.change = change; 
+    //     this.dayLow = dayLow; 
+    //     this.dayHigh = dayHigh; 
+    //     this.yearHigh = yearHigh; 
+    //     this.yearLow = yearLow; 
+    //     this.marketCap = marketCap; 
+    //     this.priceAvg50 =  priceAvg50; 
+    //     this.priceAvg200 = priceAvg200; 
+    //     this.volume = volume; 
+    //     this.avgVolume = avgVolume; 
+    //     this.exchange = exchange; 
+    //     this.open = open; 
+    //     this.previousClose = previousClose; 
+    //     this.eps = eps; 
+    //     this.pe = pe; 
+    //     this.earningsAnnouncement = earningsAnnouncement; 
+    //     this.sharesOutstanding = sharesOutstanding; 
+    //     this.timestamp = timestamp;
+    // }
+    
 
     public int getId() {
         return id;

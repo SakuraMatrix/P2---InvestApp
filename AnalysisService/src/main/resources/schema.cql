@@ -8,38 +8,33 @@ CREATE TABLE IF NOT EXISTS investapp.stocks (
 	symbol text, 
 	name text, 
 	price double,  
-	changes_percentage double, 
+	changesPercentage double, 
 	change double, 
-	day_low double, 
-	day_high double, 
-	year_high double, 
-	year_low double,  
-	market_cap double, 
-	price_avg50 double, 
-	price_avg200 double, 
+	dayLow double, 
+	dayHigh double, 
+	yearHigh double, 
+	yearLow double,  
+	marketCap double, 
+	priceAvg50 double, 
+	priceAvg200 double, 
 	volume double, 
-	avg_volume double, 
+	avgVolume double, 
 	exchange text, 
 	open double, 
 	previousClose double, 
 	eps double, 
 	pe double, 
-	earnings_announcement text, 
-	shares_outstanding double, 
+	earningsAnnouncement text, 
+	sharesOutstanding double, 
 	timestamp double,
 	
 );
 
 
 INSERT INTO investapp.stocks
-(id, account_id, owned, symbol, name, price, changes_percentage, change, day_low, day_high, year_high, year_low, market_cap, price_avg50, price_avg200, volume, avg_volume, exchange, open, previousClose, eps, pe, earnings_announcement, shares_outstanding, timestamp)
+(id, account_id, owned, symbol, name, price, changesPercentage, change, dayLow, dayHigh, yearHigh, yearLow, marketCap, priceAvg50, priceAvg200, volume, avgVolume, exchange, open, previousClose, eps, pe, earningsAnnouncement, sharesOutstanding, timestamp)
 VALUES (1, 1, 1, 'MSFT', 'Microsoft', 250, 20, 5, 245, 255, 265, 243, 1000, 260, 269, 20000, 2000, 'NASDAQ', 250, 249.5, 1000, 25, 'January 6, 2022', 4000, 12); 
-INSERT INTO investapp.stocks
-(id, account_id, owned, symbol, name, price, changes_percentage, change, day_low, day_high, year_high, year_low, market_cap, price_avg50, price_avg200, volume, avg_volume, exchange, open, previousClose, eps, pe, earnings_announcement, shares_outstanding, timestamp)
-VALUES (2, 1, 1, 'TSLA', 'Tesla', 250, 20, 5, 245, 255, 265, 243, 1000, 260, 269, 20000, 2000, 'NASDAQ', 250, 249.5, 1000, 25, 'January 6, 2022', 4000, 12); 
-INSERT INTO investapp.stocks
-(id, account_id, owned, symbol, name, price, changes_percentage, change, day_low, day_high, year_high, year_low, market_cap, price_avg50, price_avg200, volume, avg_volume, exchange, open, previousClose, eps, pe, earnings_announcement, shares_outstanding, timestamp)
-VALUES (3, 2, 45, 'GOOG', 'Google', 250, 20, 5, 245, 255, 265, 243, 1000, 260, 269, 20000, 2000, 'NASDAQ', 250, 249.5, 1000, 25, 'January 6, 2022', 4000, 12);
+
 
 -- Create Accounts Table
 CREATE TABLE IF NOT EXISTS
