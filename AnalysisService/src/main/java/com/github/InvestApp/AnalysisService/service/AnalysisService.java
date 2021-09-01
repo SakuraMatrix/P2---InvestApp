@@ -48,10 +48,7 @@ public class AnalysisService {
   }
 
   public Mono<Stocks> addStock(int account_id, int owned, String symbol) throws JsonMappingException, JsonProcessingException, MalformedURLException, IOException{   
-    // if(exists(1, "JPM") == null) 
-    //   System.out.println("Big Baby Nuzz");  
-    // else 
-    //   System.out.println("No nuzz"); 
+ 
     Mono<Stocks> holder = exists(1, "JPM"); 
     holder.block().getSymbol(); 
     if(holder == null) 
