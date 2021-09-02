@@ -33,9 +33,9 @@ public class ClientLayerApplication {
 		return HttpServer.create().port(Integer.parseInt(port)).route(routes ->
 				routes.get("/login", (request, response) ->
 								response.sendFile(login_account_html))
-						.post("/account_display", (request, response) ->
-								response.send(request.receive().asString()
-										.log("http-server")))
+//						.post("/account_display", (request, response) ->
+//								response.send(request.receive().asString()
+//										.log("http-server")))
 						.get("/display_account", (request, response) ->
 								response.sendFile(account_display_html))
 						.get("/del_transfer", (request, response) ->

@@ -15,15 +15,15 @@ public class GatewayServiceApplication {
     SpringApplication.run(GatewayServiceApplication.class, args);
   }
 
-  @Bean
-  public RouteLocator myRoutes(RouteLocatorBuilder builder) {
-    return builder
-        .routes()
-        .route(p -> p.path("/account").uri("lb://AccountService"))
-        .route(p -> p.path("/analysis").uri("lb://AnalysisService"))
-        .route(p -> p.path("/cards").uri("lb://CreditCardService"))
-        .route(p -> p.path("/loans").uri("lb://LoanService"))
-        .route(p -> p.path("/").uri("lb://ClientService"))
-        .build();
-  }
+//  @Bean
+//  public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+//    return builder
+//        .routes()
+//        .route(p -> p.path("/account").uri("lb://AccountService"))
+//        .route(p -> p.path("/analysis").uri("lb://AnalysisService"))
+//        .route(p -> p.path("/cards").uri("lb://CreditCardService"))
+//        .route(p -> p.path("/loans").uri("lb://LoanService"))
+//        .route(p -> p.path("/").uri("lb://ClientService"))
+//        .build();
+//  }
 }

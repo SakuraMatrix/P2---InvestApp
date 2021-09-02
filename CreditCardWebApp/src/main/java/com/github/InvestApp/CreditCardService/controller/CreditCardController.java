@@ -10,8 +10,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-@RequestMapping(value = "/creditcards")
 @RestController
+@RequestMapping(value = "/cards")
 public class CreditCardController {
 
     private static final Logger log = (Logger) LoggerFactory.getLogger("controller");

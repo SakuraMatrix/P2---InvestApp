@@ -1,27 +1,27 @@
 spring:
   application:
     name: gateway
-#  cloud:
-#    gateway:
-#      routes:
-#        - Account: AccountService
-#          Uri: lb://AccountService
+  cloud:
+    gateway:
+      routes:
+        - id: AccountService
+          uri: lb://AccountService
+          predicates:
+            - Path=/account/**
+        - id: AnalysisService
+          uri: lb://AnalysisService
+          predicates:
+            - Path=/analysis/**
+        - id: CreditCardService
+          uri: lb://CreditCardService
+          predicates:
+            - Path=/cards/**
+        - id: LoanService
+          uri: lb://LoanService
+          predicates:
+            - Path=/loans/**
+#        - id:
+#          uri: lb://ClientService
 #          predicates:
-#            - Path=/account
-#        - Analysis: AnalysisService
-#          Uri: lb://AnalysisService
-#          predicates:
-#            - Path=/analysis
-#        - Card: CreditCardService
-#          Uri: lb://CreditCardService
-#          predicates:
-#            - Path=/cards
-#        - Loans:
-#          Uri: lb://LoanService
-#          predicates:
-#            -Path=/loans
-#        - Client:
-#          Uri: lb://ClientService
-#          predicates:
-#            -Path=/**
+#            - Path=/**
 
