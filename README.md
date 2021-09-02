@@ -25,7 +25,6 @@ An application comprised of microservices for performing a variety of financial 
 - Java 
 - Maven 
 - Karate 
-- Amazon Web Services 
 - Spring Boot 
 - Spring Webflux
 - Lombok
