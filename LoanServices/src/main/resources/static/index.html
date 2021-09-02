@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body sandbox ="allow-scripts">
+
+    <div id="header" class="header">
+        <h1>     Invest App    </h1>
+        <h3> <i>Loan Services</i>  </h3>
+    </div>
+    <script>
+        console.log('Loading WebGUI')
+    </script>
+
+    <div class="tab">
+        <button class="tablinks" onclick="loanServices(event, 'Apply')">Loan Application</button>
+        <button class="tablinks" onclick="loanServices(event, 'View')">View Activity</button>
+        <button class="tablinks" onclick="loanServices(event, 'Review')">Review Applications</button>
+    </div>
+
+
+
+    <div id="Apply" class="tabcontent" style="display:none">
+        <form id="applicationForm" method="post" action="api/v0.1/loans/new" onsubmit="application">
+            <h1>Loan Application</h1>
+            <p>Complete all the fields in the Application Form</p>
+            <div class="container">
+                <label for="account_id"><b>Account Number:</b></label>
+                <input type="text" placeholder="account_id" class="applicant" name="account_id" id="account_id" required="">
+                <br>
+
+                <label for="loan_amount"><b> Requested Amount: $ </b></label>
+                <input type="text" placeholder="10,000" class="applicant" name="loan_amount" id="loan_amount" required="">
+                <br><br>
+
+                <label for="loan_purpose"><b> Loan-purpose </b></label>
+                <select class="applicant" name="purpose" id="loan_purpose">
+                    <option value="investment">Investment</option>
+                    <option value="personal">Personal Loan</option>
+                    <option value="home Equity">Home Equity</option>
+                    <option value="auto">Auto loan</option>
+                </select>
+                <br><br>
+
+                <label for="gross_earning"><b>Annual Gross Earnings: $ </b></label>
+                <input type="text" placeholder="35,000" class="applicant" name="gross_earning" id="gross_earning" required="">
+                <br><br>
+
+                <label for="total_expenses"><b>Total Monthly Expenses: $ </b></label>
+                <input type="text" placeholder="3,000" class="applicant" name="total_expenses" id="total_expenses" required="">
+                <br><br>
+
+                <label for="Loan_term"> <b>Loan Term in Months </b></label>
+                <input type="text" placeholder="24" class="applicant" name="loan_term" id="loan_term" required="">
+                <br><br>
+                <input type ="hidden" name="approved" id="approved" value="False">
+                <input type ="hidden" class="applicant" name="loan_status" id="loan_status", value ="submitted">
+                <input type = "hidden"  name="timestamp" id="timestamp" value="">
+                <input type = "hidden" name="load_id" id="loan_id" value = " ">
+
+                <p>Click the Submit button complete your Application .</p>
+                <input type="submit" class="registerbtn" value="Submit Application" onClick="getApplication()>
+            </div>
+            <br>
+            <br>
+            <div> <a href="/vall/user_id"> View my Applications </a>
+            </div>
+        </form>
+        <div id="application" class= "dataDisplay" onload="getApplication()"> </div>
+    </div>
+
+
+    <div id="View" class="tabcontent" style="display:block">
+        <form method="post" onsubmit="getAllOfOne()">
+            <h2> View My Applications </h2>
+            <div class="container" border="2px," black="">
+                <label for="user_name"><b>User Name</b></label>
+                <input type="text" placeholder="User Name" name="user_name" id="user_name" required=""/>
+                <br>
+                <p>Click the Submit button to Continue!.</p>
+                <div class="viewData">
+                <input type="submit" value="View my Applications">
+                <br><br>
+                 </div>
+            </div>
+        </form>
+        <div id="AllOfOne" class= "dataDisplay"> Data display </div>
+    </div>
+
+
+
+    <div id="Review" class="tabcontent" style="display: none;">
+        <form id ="viewAllForm" method="post" action="api/v0.1/loans/vall/0">
+            <h2> Review Applications </h2>
+            <div class="container" border=" 2px black solid">
+                <h2> Review Applications </h2>
+                <label for="FilterBy"><b>Filter By</b></label>
+                <select name="filter" id="filter"  required="">
+                    <option value="account_id">Investment</option>
+                    <option value="status">Application Status</option>
+                    <option value="approved">Approval Status</option>
+                    <option value="purpose">Loan Type</option>
+                </select>
+
+                <input type="select" placeholder="filter" name="filter" id="filter" required=""/>
+                <br><br>
+                <input type="submit" value="continue">
+                <div class="returndata">
+
+                </div>
+            </div>
+        </form>
+        <div id="viewAll" class= "dataDisplay" > Data Display</div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body></html>
