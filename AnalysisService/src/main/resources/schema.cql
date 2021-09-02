@@ -4,32 +4,36 @@ CREATE KEYSPACE IF NOT EXISTS investapp WITH REPLICATION = { 'class' : 'SimpleSt
 CREATE TABLE IF NOT EXISTS investapp.stocks (
 	id int PRIMARY KEY,
 	account_id int,
-	owned int,
-	symbol text,
-	name text,
-	price double,
-	changesPercentage double,
-	change double,
-	dayLow double,
-	dayHigh double,
-	yearHigh double,
-	yearLow double,
-	marketCap double,
-	priceAvg50 double,
-	priceAvg200 double,
-	volume double,
-	avgVolume double,
-	exchange text,
-	open double,
-	previousClose double,
-	eps double,
-	pe double,
-	earningsAnnouncement text,
-	sharesOutstanding double,
+	owned int, 
+	symbol text, 
+	name text, 
+	price double,  
+	changesPercentage double, 
+	change double, 
+	dayLow double, 
+	dayHigh double, 
+	yearHigh double, 
+	yearLow double,  
+	marketCap double, 
+	priceAvg50 double, 
+	priceAvg200 double, 
+	volume double, 
+	avgVolume double, 
+	exchange text, 
+	open double, 
+	previousClose double, 
+	eps double, 
+	pe double, 
+	earningsAnnouncement text, 
+	sharesOutstanding double, 
 	timestamp double,
-
+	
 );
 
+
+INSERT INTO investapp.stocks
+(id, account_id, owned, symbol, name, price, changesPercentage, change, dayLow, dayHigh, yearHigh, yearLow, marketCap, priceAvg50, priceAvg200, volume, avgVolume, exchange, open, previousClose, eps, pe, earningsAnnouncement, sharesOutstanding, timestamp)
+VALUES (1, 1, 1, 'MSFT', 'Microsoft', 250, 20, 5, 245, 255, 265, 243, 1000, 260, 269, 20000, 2000, 'NASDAQ', 250, 249.5, 1000, 25, 'January 6, 2022', 4000, 12); 
 
 
 -- Create Accounts Table
@@ -66,7 +70,3 @@ CREATE TABLE IF NOT EXISTS investapp.loans (
 	loan_status text,
 	approved boolean
 );
-	
-	
-	
-
