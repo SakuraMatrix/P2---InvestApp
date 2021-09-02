@@ -13,20 +13,15 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface AnalysisRepository extends ReactiveCassandraRepository<Stocks, Integer> {
   
-  // default Flux<Stocks> getStocks() {
-  //   return Flux.from(this.findAll().map(Stocks::getSymbol()));
-  // }
-  
-  
-  // default Flux<Stocks> get(int id) {
-  //   return Flux.from(this.findById(id));
-  // }
-  
+
   @Query("SELECT * FROM investapp.stocks WHERE account_id = ?0 ALLOW FILTERING")
   Flux<Stocks> get(Integer account_id); 
 
   @Query("SELECT * FROM investapp.stocks WHERE account_id = ?0 and symbol = ?1 ALLOW FILTERING")
-  Mono<Stocks> getBySymbol(Integer account_id, String symbol);
+  Mono<Stocks> getBySymbol(Integer account_id, String symbol); 
+
+  @Query("DELETE FROM investapp.stocks WHERE id = ?0")
+  Mono<Stocks> sell(Integer id);
   
   @Query("INSERT INTO investapp.stocks (id, account_id, owned, symbol, name, price, changesPercentage, change, dayLow," + 
   "dayHigh, yearHigh, yearLow, marketCap, priceAvg50, priceAvg200, volume, avgVolume, " +

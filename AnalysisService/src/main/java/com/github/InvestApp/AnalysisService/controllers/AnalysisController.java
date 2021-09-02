@@ -4,8 +4,6 @@ import ch.qos.logback.classic.Logger;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Arrays;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.InvestApp.AnalysisService.domain.Stocks;
@@ -36,11 +34,11 @@ public class AnalysisController {
     return service.getAll();
    }  
 
-  //  @GetMapping("/stocks/update")
-  //  public Flux<Stocks> updateStocks() {
-  //    log.info("Updating all stock values");
-  //   return service.getAll();
-  //  } 
+   @GetMapping("/stocks/{account_id}/sell/{id}")
+  public Mono<Stocks> sell(@PathVariable("account_id") int account_id, @PathVariable("id") int id)  {
+    log.info("Selling stock");   
+    return service.sellStock(id); 
+  }
 
   @GetMapping("/stocks/{account_id}")
   public Flux<Stocks> get(@PathVariable("account_id") int id) {
@@ -50,7 +48,7 @@ public class AnalysisController {
 
   @GetMapping("/stocks/{account_id}/buy/{symbol}/{owned}")
   public Mono<Stocks> buy(@PathVariable("account_id") int id, @PathVariable("symbol") String symbol, @PathVariable("owned") int owned) throws JsonMappingException, JsonProcessingException, MalformedURLException, IOException {
-    log.info("Buying new stock and subtracting funds");   
+    log.info("Buying new stock");   
     return service.addStock(id, owned, symbol);
   }
 
