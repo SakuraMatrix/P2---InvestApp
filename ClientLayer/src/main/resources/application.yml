@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ClientLayer
+          url: lb://revature
+          predicates:
+            Path=/**
