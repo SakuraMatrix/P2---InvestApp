@@ -82,7 +82,20 @@ public class CreditCardController {
      * */
     @DeleteMapping("/delete/{card_id}")
     public Mono<Void> delete(@PathVariable("card_id") String id) {
-        log.info("Deleting an CreditCard");
+        log.info("Deleting an CreditCard using Delete");
+        log.info("Id is " +id);
+        return service.delete(Integer.parseInt(id));
+    }
+    /**
+     * method used to delete a credit card using get
+     *
+     * @author Rolando Leiva
+     * @return A Mono of one Credit Card
+     * @param id: used to find and delete a credit card in the database
+     * */
+    @GetMapping("/delete/{card_id}")
+    public Mono<Void> deleteGet(@PathVariable("card_id") String id) {
+        log.info("Deleting an CreditCard using Get");
         log.info("Id is " +id);
         return service.delete(Integer.parseInt(id));
     }
