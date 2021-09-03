@@ -37,3 +37,16 @@ VALUES (18, UUID(), toTIMESTAMP(now()), 45000, 'Auto Loan' ,85000, 4500, 36, 'Co
 INSERT INTO investapp.stocks
 (account_id, owned, symbol, name, price, changes_percentage, change, day_low, day_high, year_high, year_low, market_cap, price_avg50, price_avg200, volume, avg_volume, exchange, open, previousClose, eps, pe, earnings_announcement, shares_outstanding, timestamp)
 VALUES (1, 1, 'MSFT', 'Microsoft', 250, 20, 5, 245, 255, 265, 243, 1000, 260, 269, 20000, 2000, 'NASDAQ', 250, 249.5, 1000, 25, 'January 6, 2022', 4000, 12);
+
+
+INSERT INTO investapp.accounts
+(id, first_name, last_name, funds, credit) VALUES(10, 'Andrew','Gregersen', 15000.09, 3500);
+(id, first_name, last_name, funds, credit) VALUES(22, 'James',  'Mathews', 4352.78, 4500);
+(id, first_name, last_name, funds, credit) VALUES(1, 'Liza',  'Forte', 8600.52, 1600);
+(id, first_name, last_name, funds, credit) VALUES(18, 'Melissa',  'Patten', 36580.74, 12000);
+(id, first_name, last_name, funds, credit) VALUES(2, 'Katherine',  'Hernandez', 5853.85, 4500);
+(id, first_name, last_name, funds, credit) VALUES(3, 'Andrew',  'Mubokani', 3245.56, 2200);
+(id, first_name, last_name, funds, credit) VALUES(8, 'Daniel',  'Smith', 5795.20, 1500);
+(id, first_name, last_name, funds, credit) VALUES(56, 'Rolando',  'Martin', 7896.25, 1000);
+(id, first_name, last_name, funds, credit) VALUES(23, 'Paul',  'Marquis', 14263.85, 5800);
+(id, first_name, last_name, funds, credit) VALUES(16, 'Leonard',  'Nganga', 28354.95, 5800);

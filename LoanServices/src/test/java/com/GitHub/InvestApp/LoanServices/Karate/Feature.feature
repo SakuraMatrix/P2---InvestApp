@@ -1,8 +1,9 @@
 Feature: Testing Database Connectivity
 
   Background:
-    * url  'localhost:8080'
-  #{http://${eureka.client.instance.hostname}:${server.port}
+    * url  localhost:8080
+    * def accountBase ='/loans'
+  
 
 
   Scenario: Testing the GET landing page
@@ -28,7 +29,22 @@ Feature: Testing Database Connectivity
     When method GET
     Then status 200
     And match $ =={uid:"08"}
+    
+  Scenario: Create and account with account_id 123456789
+    Given path '/loans/new/'
+    And request {account_id:123456789 , loan_id: , timestamp: , loan_amount: 999000, purpose:'TESTING', gross_earning:249999, total_expenses:4999, loan_term:36, loan_status:'SUBMITTED', approved: FALSE}
+    And header Accept = 'application/json'
+    When method POST
+    Then status 200
+    And match response == ({account_id:123456789 , loan_id:UUID() , timestamp: toTIMESTAMP(NOW()), loan_amount: 999000, purpose:'TESTING', gross_earning:249999, total_expenses:4999, loan_term:36, loan_status:'SUBMITTED', approved: FALSE}
 
+  Scenario: return the account_id: 123456789
+    Given path '/loans/vall/0'
+    And request {account_id:123456789 }
+    And header Accept = 'application/json'
+    When method POST
+    Then status 200
+    And match response == ({account_id:123456789 , loan_id:"" , timestamp: "", loan_amount: 999000, purpose:'TESTING', gross_earning:249999, total_expenses:4999, loan_term:36, loan_status:'SUBMITTED', approved: FALSE}
 
 
 

@@ -1,5 +1,6 @@
 package com.GitHub.InvestApp.LoanServices.controller;
 
+import com.GitHub.InvestApp.LoanServices.Domain.Accounts;
 import com.GitHub.InvestApp.LoanServices.Domain.Loan;
 import com.GitHub.InvestApp.LoanServices.Services.LoanServices;
 import com.datastax.oss.driver.api.core.CqlSession;
@@ -11,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
@@ -29,7 +33,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
         allowedHeaders = {"x-requested", "origin", "content-type", "accept"},
         origins = "*"
 )
-@RequestMapping(value="/api/v0.1/loans")
+@RequestMapping(value="/loans")
 
 public class LoanController {
     private static final Logger log = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("controller");
@@ -148,6 +152,33 @@ public class LoanController {
         loanService.cancelApplication(id, loan_id);
     }
 
+    /**
+     * A REST endpoint get user First name and Last name from Accounts database
+     * @author Leonard Nganga
+     * @param id : The Id of the account to retrieve
+     * @endpoint : account/{id}
+     * @return A Mono representing the updated Account
+     */
+    @GetMapping("account/{id}")
+    public Mono<Accounts> findAccountByUid(@PathVariable String id){
+        log.info("Retrieving User Details for Single account" + id);
+      return loanService.getAccount(id);
+
+    }
+
+    /**
+     * A REST endpoint get all Accounts registered from the Accounts Micro
+     * @author Leonard Nganga
+     * @param : Retrieve all accounts
+     * @endpoint : account/0
+     * @return A Mono representing the updated Account
+     */
+    @GetMapping("account/0")
+    public Flux<Accounts> findAllAccounts(){
+        log.info("Retrieving All Accounts" );
+        return loanService.getAllAccounts();
+
+    }
 
 
 

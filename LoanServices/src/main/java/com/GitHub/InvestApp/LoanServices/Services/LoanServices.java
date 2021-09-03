@@ -1,18 +1,18 @@
 package com.GitHub.InvestApp.LoanServices.Services;
 
+import com.GitHub.InvestApp.LoanServices.Domain.Accounts;
 import com.GitHub.InvestApp.LoanServices.Domain.Loan;
+import com.GitHub.InvestApp.LoanServices.Repository.AccountsRepository;
 import com.GitHub.InvestApp.LoanServices.Repository.LoansRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.cassandra.repository.AllowFiltering;
-import org.springframework.data.cassandra.repository.Query;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.UUID;
 
 @Service
 public class LoanServices {
@@ -20,14 +20,17 @@ public class LoanServices {
 
     @Autowired
     private final LoansRepository loanRepo;
+    private final AccountsRepository accountsRepository;
 
-    public LoanServices(LoansRepository loanRepo) {
+
+    public LoanServices(LoansRepository loanRepo, AccountsRepository accountsRepository) {
         this.loanRepo = loanRepo;
+        this.accountsRepository = accountsRepository;
     }
 
-    public Flux<Loan>  findAll() {
+    public Flux<Loan> findAll() {
         log.info("Query @Service");
-      return  loanRepo.findAll();
+        return loanRepo.findAll();
     }
 
     public Mono<Loan> create(Loan loan) {
@@ -42,16 +45,20 @@ public class LoanServices {
         return loanRepo.findAllById(Collections.singleton(Integer.parseInt(id)));
     }
 
+    public void cancelApplication(String id, String loan_id) {
+        int uid = Integer.parseInt(id);
+        loanRepo.getLoanByAccount_idAndLoan_id(uid,loan_id);
+    }
 
-
+    public void delete(String id, String loan_id) {
+       int uid = Integer.parseInt(id);
+        loanRepo.deleteLoanByAccount_idAfterAndLoan_id(uid, loan_id);
+    }
 
 /*** TODO **/
 
     public void updateStatus(Integer id, String status) {
-    //return loanRepo.insert(
-    //        findAll(id)
-    //        .hasElement( "False")
-    //        .hasElement("review"), status);
+
 }
 
     public Mono<Loan> updateApproval(int id, boolean b) {
@@ -59,15 +66,14 @@ public class LoanServices {
         return null;
     }
 
-    @Query("SELECT * FROM loans WHERE user_id = 'uid' AND loan_id = 'lid'")
-    public void cancelApplication(String id, String loan_id) {
-       int uid = Integer.parseInt(id);
-       int lid = Integer.parseInt(loan_id);
+
+    public Mono<Accounts> getAccount(String id) {
+        int uid = Integer.parseInt(id);
+        return accountsRepository.findById(uid);
 
     }
 
-    public Mono<Void> delete(String id) {
-        return loanRepo.deleteById(Integer.parseInt(id));
+    public Flux<Accounts> getAllAccounts() {
+        return accountsRepository.findAll();
     }
-
 }

@@ -3,7 +3,6 @@ package com.GitHub.InvestApp.LoanServices;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -16,8 +15,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @EnableEurekaClient
 public class App {
-	//@Autowired
-	//private LoanController controller;
+
 	private static final Logger log = LoggerFactory.getLogger("GUI");
 
 	public static void main(String[] args) {
@@ -34,7 +32,7 @@ public class App {
 	 * A REST End point to the HTML GUI
 	 *  endPoint: ""
 	 **/
-	@GetMapping("api/v0.1/loans")
+	@GetMapping("loans")
 	public void addViewControllers(ViewControllerRegistry registry) {
 		log.info("Loading GUI interface" );
 	}

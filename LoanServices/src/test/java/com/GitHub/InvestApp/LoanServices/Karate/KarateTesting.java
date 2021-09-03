@@ -1,11 +1,14 @@
-package com.GitHub.InvestApp.LoanServices;
+package com.GitHub.InvestApp.LoanServices.Karate;
 
-import com.intuit.karate.junit4.Karate;
+
+import com.intuit.karate.junit5.Karate;
 import cucumber.api.CucumberOptions;
-import org.junit.runner.RunWith;
 
 
-@RunWith(Karate.class)
 @CucumberOptions(features = "classpath:karate")
 public class KarateTesting {
+    @Karate.Test
+    Karate testAll() {
+        return Karate.run().relativeTo(getClass());
+    }
 }
