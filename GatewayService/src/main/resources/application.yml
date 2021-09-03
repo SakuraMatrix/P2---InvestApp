@@ -4,24 +4,24 @@ spring:
   cloud:
     gateway:
       routes:
-        -Account: AccountService
-          Uri: lb://AccountService
+        - id: AccountService
+          uri: lb://AccountService
           predicates:
-            -Path=/account
-        -Analysis: AnalysisService
-          Uri: lb://AnalysisService
+            - Path=/account/**
+        - id: AnalysisService
+          uri: lb://AnalysisService
           predicates:
-            -Path=/analysis
-        -Card: CreditCardService
-          Uri: lb://CreditCardService
+            - Path=/analysis/**
+        - id: CreditCardService
+          uri: lb://CreditCardService
           predicates:
-            -Path=/cards
-        -Loans:
-          Uri: lb://LoanService
+            - Path=/cards/**
+        - id: LoanService
+          uri: lb://LoanService
           predicates:
-            -Path=/loans
-        -Client:
-          Uri: lb://ClientService
+            - Path=/loans/**
+        - id: ClientLayer
+          uri: lb://ClientLayer
           predicates:
-            -Path=/**
+            - Path=/**
 
