@@ -1,13 +1,13 @@
 Feature: Testing Database Connectivity
   Scenario: testing the GET "all" end point
 
-    Given url '/api/v0.1/Loans/vall'
+    Given url '/loans/vall'
     When method GET
     Then status 200
 
   Scenario: Testing the exact response of a GET endpoint
 
-    Given url '/api/v0.1/loans/vall'
+    Given url '/loans/vall'
     When method GET
     Then status 200
     And match $ =={uid:"08"}

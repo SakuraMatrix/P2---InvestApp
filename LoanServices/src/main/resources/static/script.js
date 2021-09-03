@@ -27,7 +27,7 @@ let application = {}
 
 
 const getAll = async ()  => {
-    const responseJSON  =await fetch("./Loans/vall/0")
+    const responseJSON  =await fetch("./loans/vall/0")
     viewAll =  await responseJSON.json();
     document.getElementById("viewAll").innerHTML(View);
 }
@@ -42,7 +42,7 @@ function  printViewAllOfOne(){
 }
 const getAllOfOne = async () => {
 	let account_id = document.getElementById("account_id").innerText.toString;
-    const responseJson = await fetch("api/v0.1/loans/vall/"+ account_id);
+    const responseJson = await fetch("loans/vall/"+ account_id);
     AllOfOne =  await responseJson.text();
 }
 getAll().then(request => printViewAll())
@@ -54,7 +54,7 @@ function  printApplication(){
 }
 
 const getApplication = async() => {
-  const responseJson = await fetch("api/v0.1/Loans/vall/")
+  const responseJson = await fetch("loans/vall/")
 	let applicant = document.getElementsByClassName("applicant")
   application =  await responseJSON.json();
   document.getElementById("application").innerHTML(View)

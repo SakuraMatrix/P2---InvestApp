@@ -23,21 +23,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  *
  */
 @RestController
-@CrossOrigin(
-        methods = {POST, GET, OPTIONS, PUT, DELETE},
-        maxAge = 3600,
-        allowedHeaders = {"x-requested", "origin", "content-type", "accept"},
-        origins = "*"
-)
-@RequestMapping(value="/api/v0.1/loans")
-
+//@CrossOrigin(
+//        methods = {POST, GET, OPTIONS, PUT, DELETE},
+//        maxAge = 3600,
+//        allowedHeaders = {"x-requested", "origin", "content-type", "accept"},
+//        origins = "*"
+//)
+@RequestMapping(value="/loans")
 public class LoanController {
-    private static final Logger log = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("controller");
-
     @Autowired
     private final LoanServices loanService;
     public LoanController(LoanServices loanService){
-        log.info("Initiating a new Account Controller");
         this.loanService = loanService;
     }
 
@@ -52,9 +48,8 @@ public class LoanController {
      * @return A flux container to retrieve all accounts
      * @param = "vall/0": this works when we call the repository layer  directly instead of routing via the service layer
      **/
-     @GetMapping("vall/0")
+     @GetMapping("/vall/0")
      public Flux<Loan> getAllLoans() {
-     log.info("Retrieving all Accounts");
      return loanService.findAll();
      }
 
@@ -66,10 +61,8 @@ public class LoanController {
      * @return A Mono representing the updated Account
      */
      @PostMapping("/new/{param}")
-     @ResponseStatus(HttpStatus.CREATED)
      public Mono<Loan> create(@RequestBody Loan loan){
      Preconditions.checkNotNull(loan);
-     log.info(" Creating a new Loan Application Database Entry");
      return loanService.create(loan);
      }
 
@@ -80,9 +73,8 @@ public class LoanController {
      * @param id : Account ID.
      * @endpoint : vone/{lid} Type: int
      **/
-    @GetMapping("vone/{id}")
+    @GetMapping("/vone/{id}")
     public Mono<Loan> findByID(@PathVariable String id){
-        log.info("Retrieving Applications for Single account" + id);
         return loanService.getByID(id);
     }
 
@@ -94,9 +86,8 @@ public class LoanController {
      * @param id : Account User ID.
      * @endpoint: vall/{id} , Type String
      **/
-    @GetMapping("vall/{id}")
+    @GetMapping("/vall/{id}")
     public Flux<Loan> findByUid(@PathVariable String id){
-        log.info("Retrieving Applications for Single account" + id);
         return loanService.getAllByID(id);
     }
 
@@ -109,11 +100,9 @@ public class LoanController {
      * @endpoint: append/{param} , Type String
      * @return A Mono representing the updated Account
      **/
-    @PutMapping("append/{param}")
-    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/append/{param}")
     public void updateStatus( @PathVariable("account_id") Integer id, @RequestBody String status) {
         Preconditions.checkNotNull(status);
-        log.info("Updating the Application status for Account" + id);
         loanService.updateStatus(id, status);
     }
 
@@ -125,10 +114,9 @@ public class LoanController {
      * @param approved: New status of the Approved value
      * @return A Mono representing the updated Account
      */
-    @PostMapping("append/{param}")
+    @PostMapping("/append_approval/{param}")
     public Mono<Loan> updateApproval(
             @PathVariable("uid") Integer id, @RequestBody Boolean approved) {
-        log.info("Updating Approval Status for Account: " + id);
         return loanService.updateApproval(id, approved);
     }
 
@@ -141,39 +129,12 @@ public class LoanController {
      * @endpoint : rm/{id}
      * @return A Mono representing the updated Account
      */
-    @GetMapping("rm/{param}")
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteByID(String id, String loan_id){
-        log.info("Deleting Applications for a  Single account" + id);
-        loanService.cancelApplication(id, loan_id);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//    @GetMapping("/rm/{param}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public void deleteByID(String id, String loan_id){
+//        log.info("Deleting Applications for a  Single account" + id);
+//        loanService.cancelApplication(id, loan_id);
+//    }
 
 }
 

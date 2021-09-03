@@ -16,7 +16,6 @@ import java.util.UUID;
 
 @Service
 public class LoanServices {
-    private static final Logger log = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("service");
 
     @Autowired
     private final LoansRepository loanRepo;
@@ -26,7 +25,6 @@ public class LoanServices {
     }
 
     public Flux<Loan>  findAll() {
-        log.info("Query @Service");
       return  loanRepo.findAll();
     }
 
@@ -42,9 +40,6 @@ public class LoanServices {
         return loanRepo.findAllById(Collections.singleton(Integer.parseInt(id)));
     }
 
-
-
-
 /*** TODO **/
 
     public void updateStatus(Integer id, String status) {
@@ -56,15 +51,15 @@ public class LoanServices {
 
     public Mono<Loan> updateApproval(int id, boolean b) {
         // return loanRepo.insert( id,  b);
-        return null;
+        return loanRepo.updateLoan(id, b);
     }
-
-    @Query("SELECT * FROM loans WHERE user_id = 'uid' AND loan_id = 'lid'")
-    public void cancelApplication(String id, String loan_id) {
-       int uid = Integer.parseInt(id);
-       int lid = Integer.parseInt(loan_id);
-
-    }
+//
+//    @Query("SELECT * FROM loans WHERE user_id = 'uid' AND loan_id = 'lid'")
+//    public void cancelApplication(String id, String loan_id) {
+//       int uid = Integer.parseInt(id);
+//       int lid = Integer.parseInt(loan_id);
+//
+//    }
 
     public Mono<Void> delete(String id) {
         return loanRepo.deleteById(Integer.parseInt(id));

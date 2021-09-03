@@ -12,11 +12,10 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface LoansRepository extends ReactiveCassandraRepository<Loan, Integer> {
-    static final Logger log = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("repo");
-public default void logger(){
-    log.info("Repo check....");
-}
 
     @Query("UPDATE investapp.loans SET account_id = ?0 AND loan_id = ?1, status=cancelled")
     Mono<Loan> getLoanByAccount_idAndLoan_id(Integer account_id, String loan_id);
+
+    @Query("UPDATE investapp.loans SET status = ?1 WHERE id = ?0 ")
+    Mono<Loan> updateLoan(Integer id, boolean b);
 }

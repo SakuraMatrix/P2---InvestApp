@@ -1,11 +1,12 @@
 package com.GitHub.InvestApp.LoanServices;
 
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.cassandra.config.AbstractReactiveCassandraConfiguration;
 import org.springframework.data.cassandra.config.SchemaAction;
@@ -27,68 +28,41 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@ComponentScan
-@EnableReactiveCassandraRepositories (basePackages = {"com.gitHub.vazidev.LoanServices.domain"})
+@EnableReactiveCassandraRepositories
+@PropertySource("classpath:application.properties")
+//@EnableReactiveCassandraRepositories (basePackages = {"com.gitHub.vazidev.LoanServices.domain"})
 public class CassandraConfig extends AbstractReactiveCassandraConfiguration  {
-
-    @Override
-    protected String getContactPoints(){
-        return "localhost";
-    }
-
-    //@Override
-    protected String getTableName(){
-        return "loans";
-    }
-
-
-
-/**
-     public ReactiveCassandraTemplate reactiveCassandraTemplate(){
-     return new ReactiveCassandraTemplate(reactiveCassandraTemplate().getReactiveCqlOperations(), getDatabaseName()) ;
-     }
-
-    //@Value("${cassandra.keyspace}")
-    private String keyspace;
-
-    //@Value("${cassandra.contactPoint}")
+    @Value("${cassandra.contactpoint}")
     private String contactPoint;
 
-   // @Value("${dbname}")
-    private String dbName;
-
-    //@Value("${port}")
-    private String port;
-
-    protected String getDatabaseName() {
-    return dbName;
-    }
-**/
-
+    @Value("${cassandra.keyspace}")
+    private String keyspace;
 
     @Override
-    protected String getKeyspaceName(){
-        return "investapp"  ;
+    protected String getKeyspaceName() {
+        return keyspace;
+    }
+
+    public String[] getEntityBasePackage() {
+        return new String[] {"com.github.InvestApp.LoanServices.domain"};
     }
 
     @Override
-    public SchemaAction getSchemaAction() { return SchemaAction.CREATE_IF_NOT_EXISTS; }
+    protected String getContactPoints() {
+        return contactPoint;
+    }
 
     @Override
-    protected List<CreateKeyspaceSpecification> getKeyspaceCreations(){
-        CreateKeyspaceSpecification specs = CreateKeyspaceSpecification.createKeyspace("investapp")
+    public SchemaAction getSchemaAction() {
+        return SchemaAction.CREATE_IF_NOT_EXISTS;
+    }
+
+    @Override
+    protected List<CreateKeyspaceSpecification> getKeyspaceCreations() {
+        CreateKeyspaceSpecification specification =
+            CreateKeyspaceSpecification.createKeyspace(keyspace)
                 .ifNotExists()
-                .withSimpleReplication()
                 .with(KeyspaceOption.DURABLE_WRITES, true);
-        return Arrays.asList(specs);
+        return List.of(specification);
     }
-
-
-    public HttpServer httpServer(ApplicationContext context){
-        HttpHandler handler = WebHttpHandlerBuilder.applicationContext(context).build();
-        ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(handler);
-        return HttpServer.create().port(8080).handle(adapter);
-    }
-
-
 }

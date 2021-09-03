@@ -24,7 +24,7 @@
 
 
     <div id="Apply" class="tabcontent" style="display:none">
-        <form id="applicationForm" method="post" action="api/v0.1/loans/new" onsubmit="application">
+        <form id="applicationForm" method="post" action="loans/new" onsubmit="application">
             <h1>Loan Application</h1>
             <p>Complete all the fields in the Application Form</p>
             <div class="container">
@@ -62,7 +62,7 @@
                 <input type = "hidden" name="load_id" id="loan_id" value = " ">
 
                 <p>Click the Submit button complete your Application .</p>
-                <input type="submit" class="registerbtn" value="Submit Application" onClick="getApplication()>
+                <input type="submit" class="registerbtn" value="Submit Application" onClick="getApplication()">
             </div>
             <br>
             <br>
@@ -93,7 +93,7 @@
 
 
     <div id="Review" class="tabcontent" style="display: none;">
-        <form id ="viewAllForm" method="post" action="api/v0.1/loans/vall/0">
+        <form id ="viewAllForm" method="post" action="loans/vall/0">
             <h2> Review Applications </h2>
             <div class="container" border=" 2px black solid">
                 <h2> Review Applications </h2>
