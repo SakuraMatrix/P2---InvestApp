@@ -2,31 +2,31 @@ CREATE KEYSPACE IF NOT EXISTS investapp WITH REPLICATION = { 'class' : 'SimpleSt
 
 -- Create Stocks Table
 CREATE TABLE IF NOT EXISTS investapp.stocks (
+	id int PRIMARY KEY,
 	account_id int,
 	owned int,
 	symbol text,
 	name text,
 	price double,
-	changes_percentage double,
+	changesPercentage double,
 	change double,
-	day_low double,
-	day_high double,
-	year_high double,
-	year_low double,
-	market_cap double,
-	price_avg50 double,
-	price_avg200 double,
+	dayLow double,
+	dayHigh double,
+	yearHigh double,
+	yearLow double,
+	marketCap double,
+	priceAvg50 double,
+	priceAvg200 double,
 	volume double,
-	avg_volume double,
+	avgVolume double,
 	exchange text,
 	open double,
 	previousClose double,
 	eps double,
 	pe double,
-	earnings_announcement text,
-	shares_outstanding double,
+	earningsAnnouncement text,
+	sharesOutstanding double,
 	timestamp double,
-	PRIMARY KEY (account_id,symbol)
 );
 
 
@@ -56,7 +56,8 @@ CREATE TABLE IF NOT EXISTS investapp.creditcards (
 
 -- Create Loans Table
 CREATE TABLE IF NOT EXISTS investapp.loans (
-	account_id int PRIMARY KEY,
+	account_id int,
+	loan_id UUID,
 	timestamp Timestamp,
 	loan_amount double,
 	purpose text,
@@ -64,5 +65,6 @@ CREATE TABLE IF NOT EXISTS investapp.loans (
 	total_expenses double,
 	loan_term int,
 	loan_status text,
-	approved boolean
+	approved boolean,
+	PRIMARY KEY((account_id),loan_id)
 );

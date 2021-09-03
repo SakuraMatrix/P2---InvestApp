@@ -53,13 +53,13 @@ public class LoanServices {
         // return loanRepo.insert( id,  b);
         return loanRepo.updateLoan(id, b);
     }
-//
-//    @Query("SELECT * FROM loans WHERE user_id = 'uid' AND loan_id = 'lid'")
-//    public void cancelApplication(String id, String loan_id) {
-//       int uid = Integer.parseInt(id);
-//       int lid = Integer.parseInt(loan_id);
-//
-//    }
+
+    @Query("SELECT * FROM loans WHERE user_id = 'uid' AND loan_id = 'lid'")
+    public void cancelApplication(String id, String loan_id) {
+       int uid = Integer.parseInt(id);
+       int lid = Integer.parseInt(loan_id);
+
+    }
 
     public Mono<Void> delete(String id) {
         return loanRepo.deleteById(Integer.parseInt(id));

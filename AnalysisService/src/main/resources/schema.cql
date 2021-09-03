@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS investapp.stocks (
 	earningsAnnouncement text, 
 	sharesOutstanding double, 
 	timestamp double,
-	
 );
 
 
@@ -48,6 +47,7 @@ credit double
 
 -- Create Credit Cards Table
 CREATE TABLE IF NOT EXISTS investapp.creditcards (
+	card_id int,
 	account_id int,
     card_num text,
 	first_name text,
@@ -55,12 +55,13 @@ CREATE TABLE IF NOT EXISTS investapp.creditcards (
     type text,
     ccv text,
     exp_date text,
-    PRIMARY KEY (card_num)
+    PRIMARY KEY (card_id,card_num)
 );
 
 -- Create Loans Table
 CREATE TABLE IF NOT EXISTS investapp.loans (
-	account_id int PRIMARY KEY,
+	account_id int,
+	loan_id UUID,
 	timestamp Timestamp,
 	loan_amount double,
 	purpose text,
@@ -68,5 +69,6 @@ CREATE TABLE IF NOT EXISTS investapp.loans (
 	total_expenses double,
 	loan_term int,
 	loan_status text,
-	approved boolean
+	approved boolean,
+	PRIMARY KEY((account_id),loan_id)
 );

@@ -129,12 +129,10 @@ public class LoanController {
      * @endpoint : rm/{id}
      * @return A Mono representing the updated Account
      */
-//    @GetMapping("/rm/{param}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public void deleteByID(String id, String loan_id){
-//        log.info("Deleting Applications for a  Single account" + id);
-//        loanService.cancelApplication(id, loan_id);
-//    }
+    @GetMapping("/rm/{param}")
+    public void deleteByID(String id, String loan_id){
+        loanService.cancelApplication(id, loan_id);
+    }
 
 }
 

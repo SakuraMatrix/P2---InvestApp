@@ -139,7 +139,7 @@ public class AccountController {
    * @param account: The Account that is to be added to the Cassandra Database
    * @return A Mono containing the newly added Account. Acts as confirmation of success
    */
-  @PostMapping("")
+  @PostMapping("/create")
   public Mono<Account> create(@RequestBody Account account) {
     log.info("Creating an Account");
     return service.create(account);
