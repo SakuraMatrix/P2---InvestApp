@@ -8,6 +8,4 @@ import org.junit.runner.RunWith;
 @RunWith(Karate.class)
 @CucumberOptions(features = "classpath:karate")
 public class KarateTesting {
-
-
 }

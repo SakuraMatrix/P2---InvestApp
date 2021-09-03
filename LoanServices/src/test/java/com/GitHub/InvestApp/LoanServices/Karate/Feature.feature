@@ -1,24 +1,30 @@
 Feature: Testing Database Connectivity
 
+  Background:
+    * url  'localhost:8080'
+  #{http://${eureka.client.instance.hostname}:${server.port}
+
+
   Scenario: Testing the GET landing page
-    Given url: '/hello'
+    Given path 'hello'
     When method GET
     Then Status 200
-    And Match $ contains {"Welcome to Loan Service"}
+    And match response == 'success'
+
 
   Scenario: testing the GET "all" end point
     Given path '/api/v0.1/Loans/vall/0'
-    When method GET
+    When method POST
     Then status 200
 
     * def first =response(0)
 
-    Given url <'/api/v0.1/loans/vall/10'>
+    Given path '/api/v0.1/loans/vall/10'>
     When method GET
     Then status 200
 
   Scenario: Testing the exact response of a GET endpoint
-    Given url '/api/v0.1/loans/vall/08'
+    Given path '/api/v0.1/loans/vall/08'
     When method GET
     Then status 200
     And match $ =={uid:"08"}
